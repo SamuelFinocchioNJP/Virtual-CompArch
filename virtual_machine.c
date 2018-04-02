@@ -11,7 +11,7 @@
 #include "virtual_machine.h"
 #include "instruction_set.h"
 
-uint16_t memory [2048];
+uint16_t memory [MEMORY_SIZE];
 uint16_t instruction_register;
 uint16_t instruction_operand;
 uint16_t instruction_operator;
@@ -52,18 +52,40 @@ void decode_instruction ( ) {
 
 // Execute step
 void execute_instruction ( ) {
-    if ( instruction_operator == INSTRUCTION_PUSH )
-        stack_push( instruction_operand );
-
-
+    execute_primitive_instruction ( );
 }
 
 // Executes an instruction of the instruction set
-void execute_primitive_instruction ( );
+void execute_primitive_instruction ( ) {
+    if ( instruction_operator == INSTRUCTION_PUSH )
+        stack_push( instruction_operand );
+
+    if ( instruction_operator == INSTRUCTION_POP )
+        printf ( "STACK POP %d\n", stack_pop( ) );
+
+    if ( instruction_operator == INSTRUCTION_ADD )
+        stack_push( stack_pop( ) +  stack_pop( ) );
+}
 
 // Loads the program in the memory
-void load_program ( uint16_t program[] );
+void load_program ( uint16_t program[], unsigned short int program_length ) {
+    for ( int i = 0; i < program_length; i++ ) {
+        memory [i] = program[i];
+    }
+}
+
+// Executes a step for the virtual machine
+void step ( ) {
+    fetch_instruction();
+    decode_instruction();
+    execute_instruction();
+
+    printf ( " PC: %d | IR: %x", program_counter, instruction_register );
+}
 
 // Executes the virtual machine
-void init_virtual_machine ( );
+void init_virtual_machine ( ) {
+    program_counter = 0;
+    instruction_register = 0x0000;
+}
 

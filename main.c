@@ -3,30 +3,29 @@
     Date: 27/03/2018
     CopyLeft 2018
 
-    Program: stack.c
+    Program: Emulator.c
     Description:
-    Implementation of a simple and linear data structure with push and pop operations.
+    Implementation of an emulator for an invented architecture.
 */
 
-// #include "stack.h"
-
+#include <stdint.h>
+#include "stack.h"
+#include "virtual_machine.h"
 #define DEBUG
 #ifdef DEBUG
     #include <stdio.h>
 
     int main() {
-        printf("Empty: %c\n", stack_empty() ? 'T' : 'F' );
-        stack_push(100);
-        stack_push(120);
-        printf("Empty: %c\n", stack_empty() ? 'T' : 'F' );
-        printf("POP: %d\n", stack_pop());
-        printf("POP: %d\n", stack_pop());
-        printf("PUSH 11 and 8\n");
-        stack_push(11);
-        stack_push(8);
-        stack_push(stack_pop() + stack_pop());
-        printf("ADD %d\n", stack_pop());
-        printf("Empty: %c", stack_empty() ? 'T' : 'F' );
+        printf ( " Virtual Architecture 0.0.1 - Samuel Finocchio - 2018\n\n\n" );
+
+        uint16_t program[] = { 0x100A, 0x1006, 0x3000, 0x2000 };
+        load_program ( program, 4 );
+        init_virtual_machine ( );
+
+        for ( int i = 0; i < 4; i++ ) {
+            step();
+            getchar();
+        }
     }
 
 #endif // DEBUG

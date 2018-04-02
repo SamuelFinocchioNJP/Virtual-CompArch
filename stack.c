@@ -14,7 +14,7 @@
 #include "stack.h"
 
 unsigned short int _stack_pointer = 0;
-int _stack [STACK_SIZE];
+uint16_t _stack [STACK_SIZE];
 
 // Checks weather the stack if full
 bool stack_full ()
@@ -28,7 +28,7 @@ bool stack_full ()
 bool stack_push ( int value )
 {
     if( !stack_full () )
-        return _stack[_stack_pointer++] = value;
+        return _stack [_stack_pointer++] = value;
     return false;
 }
 
@@ -39,9 +39,9 @@ bool stack_empty ( void )
 }
 
 // Pulls an item out of the stack
-int stack_pop ( void )
+uint16_t stack_pop ( void )
 {
-    if( !stack_empty() ) {
-        return _stack[--_stack_pointer];
+    if( !stack_empty( ) ) {
+        return _stack [--_stack_pointer];
     }
 }

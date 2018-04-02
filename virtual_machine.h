@@ -16,7 +16,7 @@
 #include <stdint.h>
 #include "stack.h"
 
-extern uint16_t memory[MEMORY_SIZE];
+extern uint16_t memory[];
 extern uint16_t instruction_register;
 extern uint16_t instruction_operand;
 extern uint16_t instruction_operator;
@@ -41,7 +41,7 @@ void execute_instruction ( );
 void execute_primitive_instruction ( );
 
 // Loads the program in the memory
-void load_program ( uint16_t program[] );
+void load_program ( uint16_t program[], unsigned short int program_length );
 
 // Executes the virtual machine
 void init_virtual_machine ( );
