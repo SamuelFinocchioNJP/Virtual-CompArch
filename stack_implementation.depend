@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1522694594 source:c:\users\samue\desktop\ansi c - architecture simulator\stack_implementation\main.c
+	<stdio.h>
+
+1522700278 source:c:\users\samue\desktop\ansi c - architecture simulator\stack_implementation\stack.c
+	"stack.h"
+
+1522694572 c:\users\samue\desktop\ansi c - architecture simulator\stack_implementation\stack.h
+	<stdbool.h>
+
+1522700306 source:c:\users\samue\desktop\ansi c - architecture simulator\stack_implementation\virtual_machine.c
+	"virtual_machine.h"
+
+1522700331 c:\users\samue\desktop\ansi c - architecture simulator\stack_implementation\virtual_machine.h
+	<stdint.h>
+	"stack.h"
+
