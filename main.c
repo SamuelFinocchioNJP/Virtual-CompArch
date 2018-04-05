@@ -16,14 +16,16 @@
     #include <stdio.h>
 
     int main() {
-        printf ( " Virtual Architecture 0.0.1 - Samuel Finocchio - 2018\n\n\n" );
+        printf ( " Virtual Architecture 0.0.2 - Samuel Finocchio - 2018\n\n\n" );
 
-        uint16_t program[] = { 0x100A, 0x1006, 0x3000, 0x2000 };
-        load_program ( program, 4 );
+        uint16_t program[] = { 0x100A, 0x10A6, 0x10FF, 0x1002, 0x3000, 0x4000, 0x7000, 0x2000 };
+        size_t instructions_amount = sizeof(program) / sizeof(uint16_t);
+        load_program ( program, instructions_amount );
         init_virtual_machine ( );
 
-        for ( int i = 0; i < 4; i++ ) {
+        for ( int i = 0; i < instructions_amount; i++ ) {
             step();
+            print_stack_content();
             getchar();
         }
     }

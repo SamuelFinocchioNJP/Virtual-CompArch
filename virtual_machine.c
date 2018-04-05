@@ -52,6 +52,7 @@ void decode_instruction ( ) {
 
 // Execute step
 void execute_instruction ( ) {
+    // Executes complex instructions composing primitive instructions
     execute_primitive_instruction ( );
 }
 
@@ -61,10 +62,31 @@ void execute_primitive_instruction ( ) {
         stack_push( instruction_operand );
 
     if ( instruction_operator == INSTRUCTION_POP )
-        printf ( "STACK POP %d\n", stack_pop( ) );
+        printf ( " STACK POP %d\n", stack_pop( ) );
 
     if ( instruction_operator == INSTRUCTION_ADD )
         stack_push( stack_pop( ) +  stack_pop( ) );
+
+    if ( instruction_operator == INSTRUCTION_MUL )
+        stack_push( stack_pop( ) * stack_pop( ) );
+
+    if ( instruction_operator == INSTRUCTION_SUB ) {
+        uint16_t operand_top = stack_pop( );
+        uint16_t operand_bottom = stack_pop( );
+        stack_push( operand_top - operand_bottom );
+    }
+
+    if ( instruction_operator == INSTRUCTION_DIV ) {
+        uint16_t operand_top = stack_pop( );
+        uint16_t operand_bottom = stack_pop( );
+        stack_push( operand_top / operand_bottom );
+    }
+
+    if ( instruction_operator == INSTRUCTION_MOD ) {
+        uint16_t operand_top = stack_pop( );
+        uint16_t operand_bottom = stack_pop( );
+        stack_push( operand_top % operand_bottom );
+    }
 }
 
 // Loads the program in the memory
@@ -80,7 +102,7 @@ void step ( ) {
     decode_instruction();
     execute_instruction();
 
-    printf ( " PC: %d | IR: %x", program_counter, instruction_register );
+    printf ( " PC: %d | IR: 0x%x ", program_counter, instruction_register );
 }
 
 // Executes the virtual machine

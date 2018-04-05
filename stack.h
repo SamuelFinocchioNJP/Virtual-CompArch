@@ -29,5 +29,7 @@ bool stack_empty ( void );
 // Pulls an item out of the stack
 uint16_t stack_pop ( void );
 
+// Gets the stack description as a string
+void print_stack_content ( void );
 
 #endif // STACK_H

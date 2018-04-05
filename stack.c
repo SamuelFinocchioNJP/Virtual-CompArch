@@ -45,3 +45,15 @@ uint16_t stack_pop ( void )
         return _stack [--_stack_pointer];
     }
 }
+
+// Debugging purpose only
+void print_stack_content ( void ) {
+    printf ("\n\n STACK CONTENT:\n");
+
+    if( _stack_pointer == 0 )
+        printf(" BOTTOM");
+    else
+        for ( unsigned short int i = 0; i < _stack_pointer; i++ )
+            printf(" | %d", _stack[i] );
+    printf("\n");
+}
