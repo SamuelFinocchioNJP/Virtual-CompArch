@@ -43,7 +43,13 @@ void execute_primitive_instruction ( );
 // Loads the program in the memory
 void load_program ( uint16_t program[], unsigned short int program_length );
 
+// Loads an instruction in the memory
+void load_instruction ( uint16_t instruction );
+
 // Executes the virtual machine
 void init_virtual_machine ( );
+
+// Executes a step for the virtual machine
+void step ( );
 
 #endif // VIRTUAL_MACHINE_H
